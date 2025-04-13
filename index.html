@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peddy Website</title>
+
+    <!-- daisy ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- lato font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- lato style -->
+    <style>
+        .lato-thin {
+            font-family: "Lato", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+        }
+
+        .lato-light {
+            font-family: "Lato", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        .lato-regular {
+            font-family: "Lato", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .lato-bold {
+            font-family: "Lato", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .lato-black {
+            font-family: "Lato", sans-serif;
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        .lato-thin-italic {
+            font-family: "Lato", sans-serif;
+            font-weight: 100;
+            font-style: italic;
+        }
+
+        .lato-light-italic {
+            font-family: "Lato", sans-serif;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .lato-regular-italic {
+            font-family: "Lato", sans-serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .lato-bold-italic {
+            font-family: "Lato", sans-serif;
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        .lato-black-italic {
+            font-family: "Lato", sans-serif;
+            font-weight: 900;
+            font-style: italic;
+        }
+    </style>
+
+</head>
+
+<body class="px-10">
+    <!-- main -->
+   <main>
+     <!-- navbar -->
+     <div class="navbar">
+        <div class="navbar-start flex gap-1">
+            <img src="images/logo.webp" class="w-5">
+            <a class="text-xl font-bold lato-black">Peddy</a>
+        </div>
+        <div class="navbar-center lato-regular">
+            <ul class="flex gap-6">
+                <a href="">
+                    <li>Home</li>
+                </a>
+                <a href="">
+                    <li>Shop</li>
+                </a>
+                <a href="">
+                    <li>Contact</li>
+                </a>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full">
+                        <img src="images/user-avatar.png" alt="">
+                    </div>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                    <li>
+                        <a class="justify-between">
+                            Profile
+                            <span class="badge">New</span>
+                        </a>
+                    </li>
+                    <li><a>Settings</a></li>
+                    <li><a>Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- body -->
+    <div class="hero">
+        <div class="hero-content text-center">
+            <div class="space-y-5">
+                <p class="text-sm lato-bold">Bringing Families Together ❤️‍🔥 </p>
+                <h1 class="text-4xl font-bold lato-black">Your Path to Adoption <br> Starts Here</h1>
+                <p class="text-sm lato-regular">
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking <br>
+                    at its layout. The point of using Lorem Ipsum is that it has a.
+                </p>
+                <button class="btn btn-primary lato-bold">View More</button>
+                <div>
+                    <img src="images/pet.webp" class="w-full">
+                </div>
+            </div>         
+        </div>
+    </div>
+   </main>
+
+   <!-- section -->
+   <section class="pt-10">
+    <div class="hero">
+        <div class="hero-content text-center">
+          <div class="space-y-4">
+            <h1 class="text-5xl font-bold">Adopt  Your  Best Friend</h1>
+            <p>
+                It is a long established fact that a reader will be distracted by the readable content of a page <br> when looking at its layout. The point of using Lorem Ipsum is that it has a.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- btn -->
+      <div>
+        <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
+            <img src="" alt="">
+        </button>
+        <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Responsive</button>
+        <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Responsive</button>
+        <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Responsive</button>
+      </div>
+   </section>
+
+</body>
+
+</html>
