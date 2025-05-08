@@ -11,7 +11,7 @@ const setButton = (data) => {
         const div = document.createElement('div');
         console.log(cat.category);
         div.innerHTML = `             
-            <button onclick="loadPetsByCategory(${cat.category})" class="btn py-6 px-7">
+            <button onclick="loadPetsByCategory('${cat.category}')" class="btn py-6 px-7">
             <img class="w-1/3" src="${cat.category_icon}"/>
             ${cat.category}</button>     
         `;
@@ -28,12 +28,24 @@ const loadAllpets = async () => {
 
 // display all pets
 
-const displayAllpets = (data) => {
-    // console.log(data)
+const displayAllpets = (data = "") => {
+    console.log(data.length)
     const petcontainer = document.getElementById('allpetscontainer');
-    petcontainer.innerHTML="";
+    petcontainer.innerHTML = "";
+    if(data.length == 0){
+        petcontainer.classList.remove("grid");
+        petcontainer.innerHTML = `
+            <div class="min-h-screen bg-gray-100 w-full flex flex-col gap-4 justify-center items-center">
+                <img class="w-[160px]" src="images/error.webp"/>
+                <p class="text-2xl font-bold">No Information Available</p>
+                <p class="text-xs text-gray-500 px-10">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
+                its layout. The point of using Lorem Ipsum is that it has a.</p>
+            </div>
+        `;
+        return;
+    }
     for (const pet of data) {
-        // console.log(pet)
+        console.log(pet)
         const div = document.createElement('div')
         div.innerHTML = `
         <div class="card shadow-sm p-5">
@@ -78,11 +90,21 @@ const displayAllpets = (data) => {
 
 // fetch pets by category
 
-function loadPetsByCategory(categoryName){
-    alert(categoryName);
-    const res =  fetch(`https://openapi.programming-hero.com/api/peddy/category/${categoryName}`);
-    const data =  res.json();
-    console.log(data);
+const loadPetsByCategory = async (categoryName) => {
+    try {
+        const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${categoryName}`);
+        const data = await res.json();
+        displayAllpets(data.data);
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
+// clicking view more button
+
+const clickViewMore = () => {
+    document.getElementById('main-section').scrollIntoView({behavior:'smooth'});
 }
 
 loadCategory();
