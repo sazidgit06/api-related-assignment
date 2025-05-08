@@ -97,16 +97,17 @@
                     <div class="space-y-4">
                         <h1 class="text-5xl font-bold">Adopt Your Best Friend</h1>
                         <p>
-                            It is a long established fact that a reader will be distracted by the readable content of a page
+                            It is a long established fact that a reader will be distracted by the readable content of a
+                            page
                             <br> when looking at its layout. The point of using Lorem Ipsum is that it has a.
                         </p>
                     </div>
                 </div>
             </div>
-    
+
             <!-- btn -->
             <div id="categorySection" class="flex justify-between">
-                
+
             </div>
             <div class="flex justify-between items-center">
                 <h3 class="font-bold">Best deal for you</h3>
@@ -114,9 +115,26 @@
             </div>
         </section>
         <section>
-           <div id="allpetscontainer" class="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div id="allpetscontainer" class="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-           </div>
+            </div>
+        </section>
+        <section>
+            <!-- Open the modal using ID.showModal() method -->
+            <button class="btn" onclick="myModal.showModal()">open modal</button>
+            <dialog id="myModal" class="modal modal-bottom sm:modal-middle">
+                <div class="modal-box">
+                    <div id="modalContainer">
+
+                    </div>
+                    <div class="">
+                        <form method="dialog">
+                            <!-- if there is a button in form, it will close the modal -->
+                            <button class="btn w-full">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </section>
     </main>
     <script src="js/deal.js"></script>

@@ -5,11 +5,11 @@ const loadCategory = async () => {
 }
 
 const setButton = (data) => {
-    console.log(data)
+    // console.log(data)
     const categoryContainer = document.getElementById('categorySection');
     for (const cat of data) {
         const div = document.createElement('div');
-        console.log(cat.category);
+        // console.log(cat.category);
         div.innerHTML = `             
             <button onclick="loadPetsByCategory('${cat.category}')" class="btn py-6 px-7">
             <img class="w-1/3" src="${cat.category_icon}"/>
@@ -23,13 +23,13 @@ const loadAllpets = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/peddy/pets')
     const data = await res.json();
     displayAllpets(data.pets);
-    console.log(data)
+    // console.log(data)
 }
 
 // display all pets
 
 const displayAllpets = (data = "") => {
-    console.log(data.length)
+    // console.log(data)
     const petcontainer = document.getElementById('allpetscontainer');
     petcontainer.innerHTML = "";
     if(data.length == 0){
@@ -45,7 +45,7 @@ const displayAllpets = (data = "") => {
         return;
     }
     for (const pet of data) {
-        console.log(pet)
+        // console.log(pet)
         const div = document.createElement('div')
         div.innerHTML = `
         <div class="card shadow-sm p-5">
@@ -79,7 +79,7 @@ const displayAllpets = (data = "") => {
                 <img width="20" height="20" src="https://img.icons8.com/material-outlined/24/facebook-like--v1.png" alt="facebook-like--v1"/>
             </button>
             <button class="btn text-[#0E7A81]">Adopt</button>
-            <button class="btn text-[#0E7A81]">Details</button>
+            <button onclick="clickDetailsBtn('${pet.petId}')" class="btn text-[#0E7A81]">Details</button>
           </div>
         </div>
       </div>
@@ -105,6 +105,46 @@ const loadPetsByCategory = async (categoryName) => {
 
 const clickViewMore = () => {
     document.getElementById('main-section').scrollIntoView({behavior:'smooth'});
+}
+
+// clicking details button
+
+const clickDetailsBtn = async (petId) => {
+    // console.log(petId)
+    const res = await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`);
+    const data = await res.json()
+    displayDetailsByModal(data.petData)
+}
+
+// display details by modal
+
+const displayDetailsByModal = (data) => {
+    console.log(data)
+    const modalcontainer = document.getElementById('modalContainer');
+    document.getElementById('myModal').showModal();
+    modalcontainer.innerHTML = `
+        
+        <img class="h-full w-full object-cover pb-5" src="${data.image}"/>
+        <div class="flex gap-1 text-gray-500">
+            <img class="w-[20px]" src="https://img.icons8.com/fluency-systems-regular/48/medium-icons.png" alt="medium-icons"/>
+                <p>Breed: ${data.breed}</p>
+            </div>
+            <div class="flex gap-1 text-gray-500">
+            <img class="w-[20px]" src="https://img.icons8.com/material-outlined/24/calendar--v1.png" alt="calendar--v1"/>
+                <p>Birth: ${data.date_of_birth
+            }</p>
+            </div>
+            <div class="flex gap-1 text-gray-500">
+            <img class="w-[20px]" src="https://img.icons8.com/fluency-systems-regular/48/gender.png" alt="gender"/>
+                <p>Breed: ${data.gender}</p>
+            </div>
+            <div class="flex gap-1 text-gray-500 pb-3">
+            <img class="w-[20px]" src="https://img.icons8.com/material-outlined/24/us-dollar--v1.png" alt="us-dollar--v1"/>
+                <p>Breed: ${data.price}$</p>
+            </div>
+            <h2 class="font-bold">Details Information</h2>
+            <p class="text-gray-500 pb-5">${data.pet_details}</p>
+    `;
 }
 
 loadCategory();
