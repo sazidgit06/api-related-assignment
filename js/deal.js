@@ -11,7 +11,7 @@ const setButton = (data) => {
         const div = document.createElement('div');
         console.log(cat);
         div.innerHTML = `             
-            <button id="btn-${cat.category}" onclick="loadPetsByCategory('${cat.category}')" class="btn py-6 px-7">
+            <button id="btn-${cat.category}" onclick="loadPetsByCategory('${cat.category}')" class="btn py-7 px-8 border-[#0E7A81] category-btn">
             <img class="w-1/3" src="${cat.category_icon}"/>
             ${cat.category}</button>     
         `;
@@ -47,7 +47,7 @@ const displayAllpets = (data = "") => {
         petcontainer.classList.add("grid");
     }
     for (const pet of data) {
-        // console.log(pet)
+        console.log(pet)
         const div = document.createElement('div')
         div.innerHTML = `
         <div class="card shadow-sm p-5">
@@ -77,7 +77,7 @@ const displayAllpets = (data = "") => {
             </div>
             <hr>
           <div class="card-actions justify-between pt-3">
-            <button class="btn">
+            <button onclick="clickingLikeBtn(${pet.petId})" class="btn">
                 <img width="20" height="20" src="https://img.icons8.com/material-outlined/24/facebook-like--v1.png" alt="facebook-like--v1"/>
             </button>
             <button class="btn text-[#0E7A81]">Adopt</button>
@@ -98,6 +98,10 @@ const loadPetsByCategory = (categoryName) => {
         fetch(`https://openapi.programming-hero.com/api/peddy/category/${categoryName}`)
         .then((res) => res.json())
         .then((data) => {
+
+            // remove active class
+            removePreviousActive();
+
             const activebtn = document.getElementById(`btn-${categoryName}`);
             activebtn.classList.add('active')
             displayAllpets(data.data);
@@ -125,7 +129,7 @@ const clickDetailsBtn = async (petId) => {
 
 // display details by modal
 
-const displayDetailsByModal = (data) => {
+const displayDetailsByModal = (data="") => {
     console.log(data)
     const modalcontainer = document.getElementById('modalContainer');
     document.getElementById('myModal').showModal();
@@ -153,6 +157,45 @@ const displayDetailsByModal = (data) => {
             <p class="text-gray-500 pb-5">${data.pet_details}</p>
     `;
 }
+
+// remove previous class
+
+const removePreviousActive = () => {
+    const categoryBtn = document.getElementsByClassName('category-btn');
+    for(const btn of categoryBtn){
+        btn.classList.remove("active")
+    }
+}
+
+// clicking on like button operation
+
+const clickingLikeBtn = (petId) => {
+    fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
+        .then((res) => res.json())
+        .then((data) => {
+            likeBtnOp(data.petData);
+        })
+}
+
+// loading like button operation
+
+const likeBtnOp = (data) => {
+    const likeContainer = document.getElementById('likeContainer');
+    const img = document.createElement('img');
+    img.src=data.image;
+    img.classList.add('w-full');
+    img.classList.add('object-cover');
+    img.classList.add('rounded-xl');
+    likeContainer.appendChild(img);
+    
+}
+
+// adopt button operation
+
+// const adoptBtnOp = (data) => {
+//     const likeContainer = document.getElementById('likeContainer');
+//     likeContainer.remove(data.image);
+// }
 
 loadCategory();
 loadAllpets();
