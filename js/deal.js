@@ -9,14 +9,14 @@ const setButton = (data) => {
     const categoryContainer = document.getElementById('categorySection');
     for (const cat of data) {
         const div = document.createElement('div');
-        // console.log(cat.category);
+        console.log(cat);
         div.innerHTML = `             
-            <button onclick="loadPetsByCategory('${cat.category}')" class="btn py-6 px-7">
+            <button id="btn-${cat.category}" onclick="loadPetsByCategory('${cat.category}')" class="btn py-6 px-7">
             <img class="w-1/3" src="${cat.category_icon}"/>
             ${cat.category}</button>     
         `;
         categoryContainer.appendChild(div);
-    }
+    } 
 }
 
 const loadAllpets = async () => {
@@ -43,6 +43,8 @@ const displayAllpets = (data = "") => {
             </div>
         `;
         return;
+    }else{
+        petcontainer.classList.add("grid");
     }
     for (const pet of data) {
         // console.log(pet)
@@ -90,11 +92,16 @@ const displayAllpets = (data = "") => {
 
 // fetch pets by category
 
-const loadPetsByCategory = async (categoryName) => {
+const loadPetsByCategory = (categoryName) => {
     try {
-        const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${categoryName}`);
-        const data = await res.json();
-        displayAllpets(data.data);
+        console.log(categoryName)
+        fetch(`https://openapi.programming-hero.com/api/peddy/category/${categoryName}`)
+        .then((res) => res.json())
+        .then((data) => {
+            const activebtn = document.getElementById(`btn-${categoryName}`);
+            activebtn.classList.add('active')
+            displayAllpets(data.data);
+        })
     }
     catch (error) {
         console.error(error)

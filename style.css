@@ -65,3 +65,10 @@
     border: none;
     background-color: black;
 } */
+
+/* for active btn */
+
+.active{
+    background-color: #0e798157;
+    border-radius: 30px;
+}
